@@ -1,0 +1,41 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="WEB-INF/template/layout.xhtml">
+
+
+    <ui:define name="content">
+
+
+        <h:head>
+
+        </h:head>
+        <h:body>
+            <h:form>
+                <h:panelGrid columns="1" layout="grid">
+
+                    <h:outputLabel value="Name"/>
+                    <h:inputText value="#{login.name}" required="true" requiredMessage="Name please"/>
+
+                    <h:outputLabel value="Password"/>
+                    <h:inputSecret value="#{login.password}" required="true" requiredMessage="passowrd mothafucka"/>
+
+                    <h:selectOneMenu value="#{login.language}">
+                        <f:selectItem value="#{null}" itemLabel="Select a Language"/>
+                        <f:selectItems value="#{login.locales}" var="locale"
+                                       itemValue="#{login.language}" itemLabel="#{locale.displayLanguage}"/>
+                        <br/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandButton value="redirect" action="#{login.log}"/>
+
+            </h:form>
+        </h:body>
+
+
+
+
+
+    </ui:define>
+
+
+</ui:composition>

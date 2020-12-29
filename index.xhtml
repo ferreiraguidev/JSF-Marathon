@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+
+</h:head>
+<h:body>
+    <c:set var="listnumber" value="#{[1,2,3,4,5,6,7,8,9,10]}"/>
+
+    <!--    <h:outputLabel value="Hello Friend"/><br/>-->
+    <!--    <h:outputLabel value="#{registerBeanStudent.student.name}"/><br/>-->
+    <!--    <h:outputLabel value="#{registerBeanStudent.student['surname']}"/><br/>-->
+    <!--    <h:outputLabel value="#{registerBeanStudent.student.grade1 eq registerBeanStudent.student.grade2}"/><br/>-->
+    <!--    <h:outputLabel value="#{registerBeanStudent.student.grade1 lt registerBeanStudent.student.grade2}"/><br/>-->
+    <!--    <h:outputLabel value="#{registerBeanStudent.student.grade1 eq 0 ? 'ZEROP' : 'FUCKYOU'}"/><br/>-->
+    <!--    <h:outputLabel value="#{registerBeanStudent.student.grade1 = 45}"/><br/>-->
+    <!--    <h:outputLabel value="#{registerBeanStudent.student.name += ' ferreira'}"/><br/>-->
+
+    <!--    &lt;!&ndash; Reserved Words : AND, OR , NOT , EQ , NE , LT, GT , LE , GE ,TRUE , FALSE-->
+    <!--     NULL , INSTANCEOF , EMPTY , DIV & MOD  &ndash;&gt;-->
+    <!--    <h:outputText value=" ENUM "/><br/>-->
+    <!--    <h:outputLabel value="#{registerBeanStudent.student.turn += ' ferreira'}"/><br/>-->
+    <!--    <h:outputLabel value="#{registerBeanStudent.student.turn eq 'morning'}"/><br/>-->
+    <!--    &lt;!&ndash; Arrays &ndash;&gt;-->
+    <!--    <h:outputLabel-->
+    <!--            value="#{registerBeanStudent.arraynames[0]}#{registerBeanStudent.arraynames[1]}#{registerBeanStudent.arraynames[2]}"/>-->
+
+    <!--    &lt;!&ndash; ui : repeat  array &ndash;&gt;-->
+    <!--    <ui:repeat value="#{registerBeanStudent.arraynames}" var="name">-->
+    <!--        <h:outputLabel value="#{name}"/><br/>-->
+    <!--    </ui:repeat>-->
+    <!--    &lt;!&ndash; List &ndash;&gt;-->
+    <!--    <h:outputLabel-->
+    <!--            value="#{registerBeanStudent.listnames.get(0)}#{registerBeanStudent.listnames.get(1)}#{registerBeanStudent.listnames.get(2)}"/>-->
+
+    <!--    &lt;!&ndash; ui : repeat  list  &ndash;&gt;-->
+    <!--    <ui:repeat value="#{registerBeanStudent.listnames}" var="name">-->
+    <!--        <h:outputLabel value="#{name}"/><br/>-->
+    <!--    </ui:repeat>-->
+    <!--    &lt;!&ndash; ui: repeat SET &ndash;&gt;-->
+    <!--    <h:outputLabel value="&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;SET-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;"/>-->
+    <!--    <ui:repeat value="#{registerBeanStudent.setnames.toArray()}" var="name">-->
+    <!--        <h:outputLabel value="#{name}"/><br/>-->
+    <!--    </ui:repeat>-->
+    <!--    &lt;!&ndash; MAP  &ndash;&gt;-->
+    <!--    <h:outputLabel value="&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; MAP -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;"/>-->
+    <!--    <h:outputLabel value="#{ registerBeanStudent.mapnames.get('goku')}"/>-->
+    <!--    <h:outputLabel value="#{ registerBeanStudent.mapnames}"/><br/>-->
+    <!--    <ui:repeat value="#{registerBeanStudent.mapnames.entrySet().toArray()}" var="entry">-->
+    <!--        <h:outputLabel value="#{entry}"/><br/>-->
+    <!--    </ui:repeat>-->
+    <!--    &lt;!&ndash;  Executing methos on Bean   &ndash;&gt;-->
+    <!--    #{registerBeanStudent.execute () }-->
+    <!--    #{registerBeanStudent.execute('whatever ')}-->
+    <!--    #{registerBeanStudent.execute(registerBeanStudent.student.name)}-->
+    <!--    #{registerBeanStudent.returnexecute(registerBeanStudent.student.name)}-->
+
+    <h:form>
+        <h:commandButton value="Click Me!" onclick="alert('Hello World!');"/>
+        <h:commandButton value="Next Page  "
+                         action="#{registerBeanStudent.getindextwo()}"/>
+        <h:commandButton value=" Magixxx " onclick="alert('HADOUKEN');"/>
+    </h:form>
+
+    <!--    Printing CSS with Expression Language -->
+    <ui:repeat value="#{registerBeanStudent.listnames}" var="name"
+               varStatus="status">
+        <h:outputLabel value="#{name}" style="color: #{status.index mod 2 ==0 ? 'blue' : 'green'} "/><br/>
+    </ui:repeat>
+    <br/>
+    <h:form id="form">
+        <h:commandButton value="Show Grades">
+            <f:ajax render="Grades" listener="#{registerBeanStudent.metodo}"/>
+        </h:commandButton>
+        <h:commandButton value="Hide Grades">
+            <f:ajax render="Grades" listener="#{registerBeanStudent.hidegrades}"/>
+        </h:commandButton>
+        <br/>
+        <h:outputText value="#{registerBeanStudent.student.name}"/>
+        <h:outputText value="#{registerBeanStudent.student.surname}"/>
+        <h:outputText value="#{registerBeanStudent.student.turn}"/>
+        <h:outputText value="#{registerBeanStudent.student.grade1}"
+                      rendered="#{registerBeanStudent.showgrades}"/>
+        <h:outputText value="#{registerBeanStudent.student.grade2}"
+                      rendered="#{registerBeanStudent.showgrades}"/>
+        <h:outputText value="#{registerBeanStudent.student.grade3}"
+                      rendered="#{registerBeanStudent.showgrades}"/>
+        <h:outputText value="#{registerBeanStudent.showgrades}"/> --- HERE
+        <br/>
+
+        <h:commandButton value=" show link">
+            <f:ajax render=" pgLink " listener="#{registerBeanStudent.mostralink}"/>
+        </h:commandButton>
+
+        <h:commandButton value=" hide link">
+            <f:ajax render="pgLink" listener="#{registerBeanStudent.esconderlink}"/>
+        </h:commandButton>
+
+        <h:panelGroup id="pglink">
+            <ui:fragment id="fragmentLink" rendered="#{registerBeanStudent.showlink}"/>
+            <a href="http://www.google.com.br" target="_blank">www.google.com.br</a>
+            <!--        MISSING A FUCKING UI: HERE BUT IT DOESNT WORK -->
+        </h:panelGroup>
+    </h:form>
+    <!--    LAMBDAS & STREAMS -->
+    #{(sum -> sum + num) (10)}<br/>
+    #{ ((v1,v2,v3)->v1*v2*v3)(1,10,10)}<br/>
+    #{ cube =(x->x*x*x);cube (10)}<br/>
+    <h:form>
+        <h:commandButton value="calc cube"
+                         action="#{registerBeanStudent.calccube((x->x*x*x),10)}"/>
+    </h:form>
+
+    <!--    LISTS   -->
+    <ui:repeat value="#{['im','d','best']}" var="ffs">
+        #{ffs}
+    </ui:repeat>
+    <br/>
+    <!--    SET    * DOES NOT REPEAT ARGUMENTS NOT ORDER AND ITS CASE-SENSITIVE  -->
+    <ui:repeat value="#{{'im','d','best'}}" var="ffs">
+        #{ffs}
+    </ui:repeat>
+    <br/>
+    <!--    MAP   *  -->
+
+    <ui:repeat value="#{{'Best Dev course' : 'DevDojo Academy','Marathon Methods':'Chunim-on-Way'}}"
+               var="ffsmap">
+        #{ffsmap}
+    </ui:repeat>
+    <ui:repeat value="#{ffsmap.entrySet().toArray()}" var="entry">
+        #{entry.keySet} - #{entry.values}
+    </ui:repeat>
+    <br/>
+    <ui:repeat value="#{listnumber.stream().filter(v->v>5).toList()}"
+               var="result">
+        #{result}
+    </ui:repeat>
+    <br/>
+    #{listnumber.stream().average().get()}<br/>
+    #{listnumber.stream().sum()}<br/>
+    #{listnumber.stream().filter(v->v>5).sum()}
+</h:body>
+<script type=" js text ">
+    function magic(magic) {
+
+        alert(magic);
+    }
+
+</script>
+</html>

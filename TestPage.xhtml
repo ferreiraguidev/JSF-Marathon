@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+    <h:form>
+
+        <p:toolbarGroup>
+            <p:commandButton value="add" update="@form"
+                             action="#{cardao.save}"/>
+            <p:commandButton value="List" update="@form"
+                             action="#{cardao.search}"/>
+        </p:toolbarGroup>
+        <br/>
+        <br/>
+        <h:outputText value="Insert" />
+        <!--        <h:outputText value="Edit" rendered="#{carbean.edit==true}"/>-->
+        <h:outputText value="Search" />
+
+
+        <!--        <p:messages autoUpdate="true" showDetail="true"/>-->
+
+        <!--        <p:fieldset legend="Carro"/>-->
+        <!--        <p:panelGrid columns="2">-->
+        <!--            <h:outputLabel value="Carro"/>-->
+        <!--            <p:inputText value="#{carbean.entity.type}"/>-->
+
+
+        <!--            <h:outputLabel value="Modelo"/>-->
+        <!--            <p:inputText value="#{carbean.entity.brand}"/>-->
+
+
+        <!--            <h:outputLabel value="Ano"/>-->
+        <!--            <p:inputText value="#{carbean.entity.model}"/>-->
+
+
+        <!--            <h:outputLabel value="Marca"/>-->
+        <!--            <p:inputText value="#{carbean.entity.year}"/>-->
+
+        <!--            <h:outputLabel value="Preço"/>-->
+        <!--            <p:inputText value="#{carbean.entity.price}"/>-->
+        <!--        </p:panelGrid>-->
+
+        <!--        <p:commandButton value="Edit" update="@form"-->
+        <!--                         action="#{carbean.changeInsert}"/>-->
+        <!--        <p:commandButton value="Delete" update="@form"-->
+        <!--                         action="#{carbean.delete}"/>-->
+
+    </h:form>
+</h:body>
+
+<!--            <p:column headerText="Name" sortBy="#{car.name}">-->
+<!--                <h:outputText value="#{car.model}"/>-->
+<!--            </p:column>-->
+<!--            <p:column headerText="Brand" sortBy="#{car.brand}">-->
+<!--                <h:outputText value="#{car.model}"/>-->
+<!--            </p:column>-->
+<!--            <p:column headerText="Price" sortBy="#{car.year}">-->
+<!--                <h:outputText value="#{car.model}"/>-->
+<!--            </p:column>-->
+<!--            <p:column headerText="Year" sortBy="#{car.model}">-->
+<!--                <h:outputText value="#{car.model}"/>-->
+<!--            </p:column>-->
+<!--            <p:column headerText="Model" sortBy="#{car.model}">-->
+<!--                <h:outputText value="#{car.model}"/>-->
+<!--            </p:column>-->
+<!--        </p:dataTable>-->
+<!--    </h:form>-->
+<!--</h:body>-->
+
+
+</html>

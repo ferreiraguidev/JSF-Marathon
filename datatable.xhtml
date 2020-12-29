@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+    <h:outputText value="Email"/>
+    <h:form>
+        <h:dataTable value="#{datatablebean.studentList}" var="student">
+            <h:column>
+                <h:outputText value="#{student.name}  "
+                              rendered="#{not student.editing}"/>
+                <h:inputText value="#{student.name}" rendered="#{student.editing}"/>
+
+                <h:outputText value="#{student.surname}"
+                              rendered="#{not student.editing}"/>
+                <h:inputText value="#{student.surname}" rendered="#{student.editing}"/>
+
+                <f:facet name="header">
+                    <h:commandLink actionListener="#{datatablebean.orderByName('asc')}">
+                        Name asc
+                    </h:commandLink>
+                    <h:commandLink actionListener="#{datatablebean.orderByName('desc')}">
+                        Name desc
+                    </h:commandLink>
+                </f:facet>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:commandLink actionListener="#{datatablebean.orderBySurname('asc')}">
+                        Surname asc
+                    </h:commandLink>
+                    <h:commandLink actionListener="#{datatablebean.orderBySurname('desc')}">
+                        Surname desc
+                    </h:commandLink>
+                </f:facet>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Turn</f:facet>
+                <h:outputText value="#{student.turn}"
+                              rendered="#{not student.editing}"/>
+                <h:inputText value="#{student.turn}" rendered="#{student.editing}"/>
+
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                <h:outputText value="#{student.email}"
+                              rendered="#{not student.editing}"/>
+                <h:inputText value="#{student.email}" rendered="#{student.editing}"/>
+            </h:column>
+            <h:column>
+
+                <f:facet name="header"> </f:facet>
+                <h:commandLink actionListener="#{datatablebean.remove(student)}"
+                               rendered="#{not student.editing }">
+                    <h:outputText value="Remove"/>
+                </h:commandLink>
+            </h:column>
+            <h:column>
+                <f:facet name="header"> </f:facet>
+                <h:commandLink
+                        actionListener="#{datatablebean.edit(student)}"
+                        rendered="#{not student.editing}">
+                    <h:outputText value="Edit"/>
+                </h:commandLink>
+            </h:column>
+        </h:dataTable>
+        <h:commandButton value="Save" actionListener="#{datatablebean.save}"/>
+    </h:form>
+</h:body>
+</html>
