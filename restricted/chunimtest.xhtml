@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:scrollPanel>
+            <p:panelGrid columns="3">
+                <p:commandButton value="SAVE" update="@this"
+                                 actionListener="#{carBean.add()}"/>
+
+                <p:commandButton value="List" update="@form"
+                                 actionListener="#{carBean.list}"/>
+
+                <p:commandButton value="Logout" update="@form"
+                                 action="#{loginBean.logout}"/>
+            </p:panelGrid>
+        </p:scrollPanel>
+
+        <p:fieldset legend="CARRO">
+            <p:panelGrid columns="1">
+                <table>
+                    <h:outputText value="Name"/>
+                    <p:inputText value="#{carBean.carro.name}"/>
+
+                    <h:outputText value="Type"/>
+                    <p:inputText value="#{carBean.carro.type}"/>
+
+                    <h:outputText value="Brand"/>
+                    <p:inputText value="#{carBean.carro.brand}"/>
+
+                    <h:outputText value="Model"/>
+                    <p:inputText value="#{carBean.carro.model}"/>
+
+                    <h:outputText value="Year"/>
+                    <p:inputText value="#{carBean.carro.year}"/>
+
+                    <h:outputText value="Price"/>
+                    <p:inputText value="#{carBean.carro.price}"/>
+
+                </table>
+            </p:panelGrid>
+        </p:fieldset>
+        <!--        <h:form id="carList">-->
+        <!--            <p:growl id="growl" sticky="true"/>-->
+        <!--            <p:dataTable id="cars" var="car" value="#{carBean.cars}">-->
+
+        <p:dataTable value="#{carBean.cars}" var="car">
+
+            <p:column>
+                <p:commandButton value="Edit" update="@form"
+                                 actionListener="#{carBean.DAOedit(car)}"/>
+            </p:column>
+
+            <p:column>
+                <p:commandButton value="Delete" update="@form"
+                                 actionListener="#{carBean.delete(car)}"/>
+            </p:column>
+
+            <p:column headerText="Front">
+                <p:commandButton value="Upload" update="@form"
+                                 action="#{carBean.delete(car)}"/>
+            </p:column>
+
+            <p:column headerText="Back">
+                <p:contentFlow value="#{carBean.imagespath}" var="images">
+                    <p:graphicImage name="C:\Users\Guilherme Ferreira\Desktop\CarsList\car" styleClass="content"/>
+                    <div class="caption">#{images}</div>
+                </p:contentFlow>
+            </p:column>
+
+            <p:column headerText="Back" sortBy="#{car.name}">
+                <h:graphicImage library="default" name="images/goku.image.jpg"/>
+            </p:column>
+
+            <p:column headerText="Name" sortBy="#{car.name}">
+                <h:outputText value="#{car.name}"/>
+            </p:column>
+
+            <p:column headerText="type" sortBy="#{car.type}">
+                <h:outputText value="#{car.type}"/>
+            </p:column>
+
+            <p:column headerText="Brand" sortBy="#{car.brand}">
+                <h:outputText value="#{car.brand}"/>
+            </p:column>
+
+            <p:column headerText="Model" sortBy="#{car.model}">
+                <h:outputText value="#{car.model}"/>
+            </p:column>
+
+            <p:column headerText="Year" sortBy="#{car.year}">
+                <h:outputText value="#{car.year}"/>
+            </p:column>
+
+            <p:column headerText="Price" sortBy="#{car.price}">
+                <h:outputText value="#{car.price}"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+
+
+</html>

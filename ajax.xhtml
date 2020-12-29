@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+
+</h:head>
+
+<h:body>
+    <h:form>
+
+        <h:panelGrid columns="1">
+            <!-- @form  -->
+            <h:inputText value="#{ajaxtest.name}" id="name"/>
+            <h:inputText value="#{ajaxtest.surname}" id="surname"/>
+
+            <h:commandButton value="SEND">
+                <f:ajax event="keyup" listener="#{ajaxtest.toUpperCase}"
+                        render="nameUpper" delay="1000"/>
+            </h:commandButton>
+
+            <h:outputText value="#{ajaxtest.name}" id="nameUpper"/>
+            <h:outputText value="#{ajaxtest.surname}" id="surnameUpper"/>
+
+            <h:inputText value="#{ajaxtest.name}">
+                <f:ajax event="blur" execute="name surname" listener="#{ajaxtest.toUpperCaseName}"
+                        render="@form"/>
+            </h:inputText>
+
+            <h:selectOneMenu value="#{ajaxtest.selectedAnime}">
+                <f:selectItem value="#{null}" itemLabel="Select a Key"/>
+                <f:selectItems value="#{ajaxtest.animeCharacMap.keySet()}"
+                               var="anime" itemLabel="#{anime}" itemValue="#{anime}"/>
+                <f:ajax event="change" listener="#{ajaxtest.onSelectAnime}" render="charac"/>
+            </h:selectOneMenu>
+
+            <h:selectOneMenu id="charac" value="#{ajaxtest.selectedCharac}">
+                <f:selectItem value="#{null}" itemLabel="Select a Character"/>
+                <f:selectItems value="#{ajaxtest.characters}"
+                               var="charac" itemLabel="#{charac}" itemValue="#{charac}"/>
+            </h:selectOneMenu>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>
